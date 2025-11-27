@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #2874f0 0%, #1e5bb8 100%);
+        color: white;
+        padding: 80px 0;
+    }
+    
+    .feature-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #2874f0, #1e5bb8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 2rem;
+    }
+    
+    .stats-section {
+        background: #f8f9fa;
+        padding: 60px 0;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #2874f0;
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        color: white;
+        padding: 60px 0;
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        background: #2874f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Start Selling on Flipkart</h1>
+                <p class="lead mb-4">Join millions of sellers and grow your business with India's largest e-commerce platform. Reach customers across the country and boost your sales.</p>
+                <div class="d-flex gap-3">
+                    <a href="#register" class="btn btn-warning btn-lg px-4 py-3">
+                        <i class="bi bi-shop me-2"></i>Start Selling Now
+                    </a>
+                    <a href="#learn-more" class="btn btn-outline-light btn-lg px-4 py-3">
+                        <i class="bi bi-play-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="bi bi-shop" style="font-size: 15rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="stats-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">45 Cr+</div>
+                <p class="text-muted">Registered Customers</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">12 Lakh+</div>
+                <p class="text-muted">Sellers</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">8 Cr+</div>
+                <p class="text-muted">Products</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">27000+</div>
+                <p class="text-muted">Pin codes Served</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Why Sell on Flipkart?</h2>
+        <p class="lead text-muted">Discover the benefits of joining India's leading e-commerce platform</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-people"></i>
+                </div>
+                <h4>Massive Customer Base</h4>
+                <p class="text-muted">Reach over 45 crore registered customers across India and grow your business exponentially.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+                <h4>Logistics Support</h4>
+                <p class="text-muted">Leverage our extensive logistics network for fast and reliable delivery to customers nationwide.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <h4>Secure Payments</h4>
+                <p class="text-muted">Get guaranteed and timely payments with our secure payment gateway and seller protection.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-graph-up"></i>
+                </div>
+                <h4>Business Growth</h4>
+                <p class="text-muted">Access powerful analytics and insights to optimize your listings and boost sales performance.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-headset"></i>
+                </div>
+                <h4>24/7 Support</h4>
+                <p class="text-muted">Get dedicated seller support to help you resolve issues and grow your business effectively.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-bullseye"></i>
+                </div>
+                <h4>Marketing Tools</h4>
+                <p class="text-muted">Promote your products with our advertising solutions and reach the right customers.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How to Start Section -->
+<div class="bg-light py-5" id="learn-more">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">How to Start Selling</h2>
+            <p class="lead text-muted">Get started in just 4 simple steps</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="step-number mb-3">1</div>
+                <h5>Register</h5>
+                <p class="text-muted">Create your seller account with basic business information and documents.</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="step-number mb-3">2</div>
+                <h5>List Products</h5>
+                <p class="text-muted">Add your products with high-quality images and detailed descriptions.</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="step-number mb-3">3</div>
+                <h5>Receive Orders</h5>
+                <p class="text-muted">Start receiving orders from customers across India through our platform.</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="step-number mb-3">4</div>
+                <h5>Grow Business</h5>
+                <p class="text-muted">Scale your business with our tools, analytics, and marketing solutions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section" id="register">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4">Ready to Start Your Journey?</h2>
+        <p class="lead mb-4">Join thousands of successful sellers on Flipkart today</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h5 class="card-title text-dark mb-4">Get Started Now</h5>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Business Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Email Address" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" required>
+                                    <option value="">Select Business Type</option>
+                                    <option value="individual">Individual</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="company">Private Limited Company</option>
+                                    <option value="llp">Limited Liability Partnership</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="bi bi-shop me-2"></i>Start Selling
+                            </button>
+                        </form>
+                        <p class="text-muted mt-3 small">By registering, you agree to our Terms & Conditions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

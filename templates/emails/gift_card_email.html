@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Gift Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #2874f0;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2874f0;
+            margin-bottom: 10px;
+        }
+        .gift-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .gift-card h2 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+        }
+        .card-details {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .card-number {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .security-code {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .amount {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .message-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #2874f0;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .instructions h3 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            background: #2874f0;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .expires {
+            color: #ff9800;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎁 Flipkart</div>
+            <h1>You've Received a Gift Card!</h1>
+        </div>
+        
+        <p>Dear {{ recipient_name }},</p>
+        
+        <p>Great news! {{ sender_name }} has sent you a Flipkart Gift Card. You can use this to shop for millions of products on Flipkart.</p>
+        
+        {% if personal_message %}
+        <div class="message-section">
+            <h3>Personal Message:</h3>
+            <p><em>"{{ personal_message }}"</em></p>
+            <p><strong>- {{ sender_name }}</strong></p>
+        </div>
+        {% endif %}
+        
+        <div class="gift-card">
+            <h2>🎁 Flipkart Gift Card</h2>
+            <div class="amount">₹{{ amount }}</div>
+            
+            <div class="card-details">
+                <div class="card-number">
+                    <strong>Card Number:</strong><br>
+                    {{ card_number }}
+                </div>
+                <div class="security-code">
+                    <strong>Security Code:</strong> {{ security_code }}
+                </div>
+                <div class="expires">
+                    Valid until: {{ expires_at|date:"F d, Y" }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>How to Redeem Your Gift Card:</h3>
+            <ol>
+                <li>Visit <strong>flipkart.com</strong> and log in to your account</li>
+                <li>Go to "Gift Cards" section in your account</li>
+                <li>Enter your Gift Card Number and Security Code</li>
+                <li>Click "Add to Account" to add the balance</li>
+                <li>Use the balance during checkout for any purchase</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="http://127.0.0.1:8000/gift-cards/" class="button">Redeem Now</a>
+        </div>
+        
+        <div style="background: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0; border: 1px solid #ffeaa7;">
+            <strong>Important Notes:</strong>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>This gift card is valid for 1 year from the date of purchase</li>
+                <li>Gift cards can be used for multiple purchases until the balance is exhausted</li>
+                <li>Gift cards cannot be exchanged for cash</li>
+                <li>Keep your card number and security code safe and confidential</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Thank you for choosing Flipkart!</p>
+            <p>If you have any questions, please contact our customer support.</p>
+            <p style="font-size: 12px; color: #999;">
+                This is an automated email. Please do not reply to this message.<br>
+                © 2024 Flipkart. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .profile-container {
+        background: #f1f3f6;
+        min-height: 80vh;
+        margin: -1.5rem -15px 0;
+        padding: 2rem 0;
+    }
+    
+    .profile-sidebar {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .profile-header {
+        background: #2874f0;
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+    
+    .profile-info h4 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+    
+    .profile-info p {
+        margin: 0;
+        opacity: 0.8;
+        font-size: 0.9rem;
+    }
+    
+    .profile-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .profile-menu li {
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .profile-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .profile-menu a {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        color: #212121;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+    
+    .profile-menu a:hover {
+        background: #f8f9fa;
+        color: #2874f0;
+    }
+    
+    .profile-menu a.active {
+        background: #e3f2fd;
+        color: #2874f0;
+        border-right: 3px solid #2874f0;
+    }
+    
+    .profile-menu i {
+        margin-right: 0.75rem;
+        width: 20px;
+        text-align: center;
+    }
+    
+    .profile-content {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 2rem;
+    }
+    
+    .content-header {
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .content-header h2 {
+        color: #212121;
+        font-size: 1.5rem;
+        margin: 0;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-label {
+        font-weight: 600;
+        color: #878787;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    
+    .btn-primary {
+        background: #2874f0;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+    
+    .btn-secondary {
+        background: #878787;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 4px;
+        font-weight: 500;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .btn-secondary:hover {
+        background: #666;
+        color: white;
+    }
+    
+    .form-check {
+        margin-top: 1rem;
+    }
+    
+    .form-check-label {
+        margin-left: 0.5rem;
+        color: #212121;
+    }
+    
+    @media (max-width: 768px) {
+        .profile-container {
+            padding: 1rem 0;
+        }
+        .profile-content {
+            margin-top: 1rem;
+        }
+    }
+</style>
+
+<div class="profile-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            {{ user.first_name|first|upper }}{{ user.last_name|first|upper }}
+                        </div>
+                        <div class="profile-info">
+                            <h4>Hello,</h4>
+                            <p>{{ user.first_name }} {{ user.last_name }}</p>
+                        </div>
+                    </div>
+                    <ul class="profile-menu">
+                        <li><a href="{% url 'users:profile' %}"><i class="bi bi-person"></i> My Profile</a></li>
+                        <li><a href="{% url 'users:edit_profile' %}"><i class="bi bi-pencil-square"></i> Edit Profile</a></li>
+                        <li><a href="{% url 'users:manage_addresses' %}" class="active"><i class="bi bi-geo-alt"></i> My Addresses</a></li>
+                        <li><a href="#"><i class="bi bi-box-seam"></i> My Orders</a></li>
+                        <li><a href="#"><i class="bi bi-heart"></i> My Wishlist</a></li>
+                        <li><a href="#"><i class="bi bi-credit-card"></i> Payment Methods</a></li>
+                        <li><a href="#"><i class="bi bi-bell"></i> Notifications</a></li>
+                        <li><a href="{% url 'users:logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="profile-content">
+                    <div class="content-header">
+                        <h2>{{ title }}</h2>
+                    </div>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name *</label>
+                                    {{ form.full_name }}
+                                    {% if form.full_name.errors %}
+                                        <div class="text-danger">{{ form.full_name.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number *</label>
+                                    {{ form.phone_number }}
+                                    {% if form.phone_number.errors %}
+                                        <div class="text-danger">{{ form.phone_number.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Address Line 1 *</label>
+                            {{ form.address_line_1 }}
+                            {% if form.address_line_1.errors %}
+                                <div class="text-danger">{{ form.address_line_1.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Address Line 2 (Optional)</label>
+                            {{ form.address_line_2 }}
+                            {% if form.address_line_2.errors %}
+                                <div class="text-danger">{{ form.address_line_2.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">City *</label>
+                                    {{ form.city }}
+                                    {% if form.city.errors %}
+                                        <div class="text-danger">{{ form.city.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">State *</label>
+                                    {{ form.state }}
+                                    {% if form.state.errors %}
+                                        <div class="text-danger">{{ form.state.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Pincode *</label>
+                                    {{ form.pincode }}
+                                    {% if form.pincode.errors %}
+                                        <div class="text-danger">{{ form.pincode.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-check">
+                            {{ form.is_default }}
+                            <label class="form-check-label" for="{{ form.is_default.id_for_label }}">
+                                Set as default address
+                            </label>
+                            {% if form.is_default.errors %}
+                                <div class="text-danger">{{ form.is_default.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-flex gap-3 mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-lg me-2"></i>Save Address
+                            </button>
+                            <a href="{% url 'users:manage_addresses' %}" class="btn btn-secondary">
+                                <i class="bi bi-x-lg me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,396 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .profile-container {
+        background: #f1f3f6;
+        min-height: 80vh;
+        margin: -1.5rem -15px 0;
+        padding: 2rem 0;
+    }
+    
+    .profile-sidebar {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .profile-header {
+        background: #2874f0;
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+    
+    .profile-info h4 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+    
+    .profile-info p {
+        margin: 0;
+        opacity: 0.8;
+        font-size: 0.9rem;
+    }
+    
+    .profile-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .profile-menu li {
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .profile-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .profile-menu a {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        color: #212121;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+    
+    .profile-menu a:hover {
+        background: #f8f9fa;
+        color: #2874f0;
+    }
+    
+    .profile-menu a.active {
+        background: #e3f2fd;
+        color: #2874f0;
+        border-right: 3px solid #2874f0;
+    }
+    
+    .profile-menu i {
+        margin-right: 0.75rem;
+        width: 20px;
+        text-align: center;
+    }
+    
+    .profile-content {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 2rem;
+    }
+    
+    .content-header {
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .content-header h2 {
+        color: #212121;
+        font-size: 1.5rem;
+        margin: 0;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #878787;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+    
+    .btn-primary {
+        background: #2874f0;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 4px;
+        font-weight: 500;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .btn-primary:hover {
+        background: #1e5bb8;
+        color: white;
+    }
+    
+    .wishlist-item-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: box-shadow 0.2s;
+        background: white;
+    }
+    
+    .wishlist-item-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .product-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .no-image {
+        color: #ccc;
+        font-size: 3rem;
+    }
+    
+    .remove-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255,255,255,0.9);
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #dc3545;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    
+    .remove-btn:hover {
+        background: #dc3545;
+        color: white;
+    }
+    
+    .product-info {
+        padding: 1rem;
+    }
+    
+    .product-name {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #212121;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+    
+    .product-price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2874f0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stock-status {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+    
+    .in-stock {
+        background: #e8f5e8;
+        color: #2e7d32;
+    }
+    
+    .out-of-stock {
+        background: #ffebee;
+        color: #d32f2f;
+    }
+    
+    .product-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .btn-sm {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    @media (max-width: 768px) {
+        .profile-container {
+            padding: 1rem 0;
+        }
+        .profile-content {
+            margin-top: 1rem;
+        }
+        
+        .product-actions {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="profile-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            {{ user.first_name|first|upper|default:"U" }}{{ user.last_name|first|upper|default:"" }}
+                        </div>
+                        <div class="profile-info">
+                            <h4>Hello,</h4>
+                            <p>{{ user.first_name }} {{ user.last_name }}</p>
+                        </div>
+                    </div>
+                    <ul class="profile-menu">
+                        <li><a href="{% url 'users:profile' %}"><i class="bi bi-person"></i> My Profile</a></li>
+                        <li><a href="{% url 'users:edit_profile' %}"><i class="bi bi-pencil-square"></i> Edit Profile</a></li>
+                        <li><a href="{% url 'users:manage_addresses' %}"><i class="bi bi-geo-alt"></i> My Addresses</a></li>
+                        <li><a href="{% url 'users:my_orders' %}"><i class="bi bi-box-seam"></i> My Orders</a></li>
+                        <li><a href="#" class="active"><i class="bi bi-heart"></i> My Wishlist</a></li>
+                        <li><a href="{% url 'users:payment_methods' %}"><i class="bi bi-credit-card"></i> Payment Methods</a></li>
+                        <li><a href="{% url 'users:notifications' %}"><i class="bi bi-bell"></i> Notifications</a></li>
+                        <li><a href="{% url 'users:logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="profile-content">
+                    <div class="content-header">
+                        <h2>My Wishlist</h2>
+                    </div>
+                    
+                    {% if wishlist_items %}
+                        <div class="row">
+                            {% for item in wishlist_items %}
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="wishlist-item-card">
+                                    <div class="product-image">
+                                        {% if item.product.image %}
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid">
+                                        {% else %}
+                                            <div class="no-image">
+                                                <i class="bi bi-image"></i>
+                                            </div>
+                                        {% endif %}
+                                        <button class="remove-btn" data-product-id="{{ item.product.id }}">
+                                            <i class="bi bi-x"></i>
+                                        </button>
+                                    </div>
+                                    <div class="product-info">
+                                        <h5 class="product-name">{{ item.product.name }}</h5>
+                                        <p class="product-price">₹{{ item.product.price|floatformat:2 }}</p>
+                                        {% if item.product.stock > 0 %}
+                                            <span class="stock-status in-stock">In Stock</span>
+                                        {% else %}
+                                            <span class="stock-status out-of-stock">Out of Stock</span>
+                                        {% endif %}
+                                        <div class="product-actions mt-3">
+                                            {% if item.product.stock > 0 %}
+                                                <button class="btn btn-primary btn-sm">
+                                                    <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                                                </button>
+                                            {% endif %}
+                                            <button class="btn btn-outline-danger btn-sm remove-wishlist-btn" data-product-id="{{ item.product.id }}">
+                                                <i class="bi bi-trash me-1"></i>Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="bi bi-heart"></i>
+                            <h4>Your wishlist is empty</h4>
+                            <p>Add products to your wishlist to save them for later.</p>
+                            <a href="{% url 'home' %}" class="btn btn-primary">
+                                <i class="bi bi-shop me-2"></i>Start Shopping
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle remove from wishlist buttons
+    document.querySelectorAll('.remove-btn, .remove-wishlist-btn').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            if (confirm('Are you sure you want to remove this item from your wishlist?')) {
+                fetch('/users/wishlist/remove/' + productId + '/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error removing item from wishlist');
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                    alert('Error removing item from wishlist');
+                });
+            }
+        });
+    });
+    
+    // Handle add to cart buttons
+    document.querySelectorAll('.btn-primary').forEach(function(button) {
+        if (button.textContent.includes('Add to Cart')) {
+            button.addEventListener('click', function() {
+                alert('Add to cart functionality will be implemented soon!');
+            });
+        }
+    });
+});
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endblock %}

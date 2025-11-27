@@ -1,0 +1,526 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+        color: white;
+        padding: 80px 0;
+    }
+    
+    .gift-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .gift-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    
+    .gift-card-gradient-1 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gift-card-gradient-2 {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .gift-card-gradient-3 {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    
+    .gift-card-gradient-4 {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+    
+    .gift-card-gradient-5 {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+    
+    .gift-card-gradient-6 {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+    
+    .amount-btn {
+        border: 2px solid #e91e63;
+        color: #e91e63;
+        background: white;
+        border-radius: 25px;
+        padding: 10px 20px;
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .amount-btn:hover, .amount-btn.active {
+        background: #e91e63;
+        color: white;
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #e91e63, #ad1457);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 2rem;
+    }
+    
+    .occasion-card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    .occasion-card:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Flipkart Gift Cards</h1>
+                <p class="lead mb-4">Give the gift of choice with Flipkart Gift Cards. Perfect for any occasion, redeemable across millions of products on Flipkart.</p>
+                <div class="d-flex gap-3">
+                    <a href="#buy-now" class="btn btn-light btn-lg px-4 py-3">
+                        <i class="bi bi-gift me-2"></i>Buy Gift Card
+                    </a>
+                    <a href="#redeem" class="btn btn-outline-light btn-lg px-4 py-3">
+                        <i class="bi bi-credit-card me-2"></i>Redeem Card
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="bi bi-gift" style="font-size: 15rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gift Card Designs -->
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Choose Your Design</h2>
+        <p class="lead text-muted">Beautiful gift card designs for every occasion</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="gift-card gift-card-gradient-1 text-white p-4" style="height: 200px;">
+                <div class="d-flex justify-content-between align-items-start h-100">
+                    <div>
+                        <h5 class="mb-2">Flipkart Gift Card</h5>
+                        <p class="mb-0 opacity-75">For Someone Special</p>
+                    </div>
+                    <div class="text-end">
+                        <div class="fw-bold fs-4">₹ 1000</div>
+                        <small class="opacity-75">Valid for 1 year</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="gift-card gift-card-gradient-2 text-white p-4" style="height: 200px;">
+                <div class="d-flex justify-content-between align-items-start h-100">
+                    <div>
+                        <h5 class="mb-2">Birthday Special</h5>
+                        <p class="mb-0 opacity-75">Make it Memorable</p>
+                    </div>
+                    <div class="text-end">
+                        <div class="fw-bold fs-4">₹ 2000</div>
+                        <small class="opacity-75">Valid for 1 year</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="gift-card gift-card-gradient-3 text-white p-4" style="height: 200px;">
+                <div class="d-flex justify-content-between align-items-start h-100">
+                    <div>
+                        <h5 class="mb-2">Festival Wishes</h5>
+                        <p class="mb-0 opacity-75">Celebrate Together</p>
+                    </div>
+                    <div class="text-end">
+                        <div class="fw-bold fs-4">₹ 5000</div>
+                        <small class="opacity-75">Valid for 1 year</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="gift-card gift-card-gradient-4 text-white p-4" style="height: 200px;">
+                <div class="d-flex justify-content-between align-items-start h-100">
+                    <div>
+                        <h5 class="mb-2">Wedding Gift</h5>
+                        <p class="mb-0 opacity-75">New Beginnings</p>
+                    </div>
+                    <div class="text-end">
+                        <div class="fw-bold fs-4">₹ 10000</div>
+                        <small class="opacity-75">Valid for 1 year</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="gift-card gift-card-gradient-5 text-white p-4" style="height: 200px;">
+                <div class="d-flex justify-content-between align-items-start h-100">
+                    <div>
+                        <h5 class="mb-2">Thank You</h5>
+                        <p class="mb-0 opacity-75">Show Appreciation</p>
+                    </div>
+                    <div class="text-end">
+                        <div class="fw-bold fs-4">₹ 500</div>
+                        <small class="opacity-75">Valid for 1 year</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="gift-card gift-card-gradient-6 text-dark p-4" style="height: 200px;">
+                <div class="d-flex justify-content-between align-items-start h-100">
+                    <div>
+                        <h5 class="mb-2">Congratulations</h5>
+                        <p class="mb-0 opacity-75">Achievement Unlocked</p>
+                    </div>
+                    <div class="text-end">
+                        <div class="fw-bold fs-4">₹ 3000</div>
+                        <small class="opacity-75">Valid for 1 year</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Buy Gift Card Section -->
+<div class="bg-light py-5" id="buy-now">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4">Purchase Gift Card</h3>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Recipient Name</label>
+                                    <input type="text" class="form-control" name="recipient_name" placeholder="Enter recipient's name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Recipient Email</label>
+                                    <input type="email" class="form-control" name="recipient_email" placeholder="Enter recipient's email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">Select Amount</label>
+                                <div class="text-center">
+                                    <button type="button" class="amount-btn" data-amount="500">₹500</button>
+                                    <button type="button" class="amount-btn active" data-amount="1000">₹1000</button>
+                                    <button type="button" class="amount-btn" data-amount="2000">₹2000</button>
+                                    <button type="button" class="amount-btn" data-amount="5000">₹5000</button>
+                                    <button type="button" class="amount-btn" data-amount="10000">₹10000</button>
+                                </div>
+                                <input type="hidden" name="amount" id="selectedAmount" value="1000">
+                                <div class="mt-3">
+                                    <input type="number" class="form-control" name="custom_amount" id="customAmount" placeholder="Enter custom amount (₹100 - ₹50000)" min="100" max="50000">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Personal Message (Optional)</label>
+                                <textarea class="form-control" name="personal_message" rows="3" placeholder="Write a personal message for the recipient"></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">Delivery Date</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="delivery" id="immediate" value="immediate" checked>
+                                            <label class="form-check-label" for="immediate">
+                                                Send Immediately
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="delivery" id="scheduled" value="scheduled">
+                                            <label class="form-check-label" for="scheduled">
+                                                Schedule Delivery
+                                            </label>
+                                        </div>
+                                        <input type="date" class="form-control mt-2" name="delivery_date" id="deliveryDate" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">
+                                    <i class="bi bi-credit-card me-2"></i>Send Gift Card
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Why Choose Flipkart Gift Cards?</h2>
+        <p class="lead text-muted">The perfect gift for every occasion</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="feature-icon">
+                <i class="bi bi-lightning"></i>
+            </div>
+            <h5>Instant Delivery</h5>
+            <p class="text-muted">Gift cards delivered instantly via email or schedule for later delivery.</p>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="feature-icon">
+                <i class="bi bi-shield-check"></i>
+            </div>
+            <h5>Secure & Safe</h5>
+            <p class="text-muted">100% secure transactions with encrypted payment processing.</p>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="feature-icon">
+                <i class="bi bi-infinity"></i>
+            </div>
+            <h5>No Expiry Worries</h5>
+            <p class="text-muted">Valid for 1 year from purchase date with easy balance check.</p>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="feature-icon">
+                <i class="bi bi-box-seam"></i>
+            </div>
+            <h5>Millions of Products</h5>
+            <p class="text-muted">Redeemable across 8+ crore products on Flipkart.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Redeem Section -->
+<div class="bg-primary text-white py-5" id="redeem">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <h2 class="mb-4">Redeem Your Gift Card</h2>
+                <p class="lead mb-4">Enter your gift card details to add balance to your account</p>
+                
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form id="redeemForm">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-lg" name="card_number" placeholder="Enter Gift Card Number (XXXX-XXXX-XXXX-XXXX)" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-lg" name="security_code" placeholder="Enter Security Code" maxlength="6" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="bi bi-check-circle me-2"></i>Redeem Gift Card
+                            </button>
+                        </form>
+                        
+                        <div class="mt-4 pt-3 border-top">
+                            <h6 class="text-dark">Check Gift Card Balance</h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="balanceCardNumber" placeholder="Gift Card Number">
+                                <button class="btn btn-outline-primary" type="button" id="checkBalanceBtn">Check Balance</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Occasions Section -->
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Perfect for Every Occasion</h2>
+        <p class="lead text-muted">Find the right gift card for any celebration</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="occasion-card">
+                <div class="card-body text-center p-4" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                    <i class="bi bi-balloon-heart text-white mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="text-white">Birthdays</h5>
+                    <p class="text-white opacity-75">Make their special day memorable</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="occasion-card">
+                <div class="card-body text-center p-4" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    <i class="bi bi-heart-fill text-dark mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="text-dark">Anniversaries</h5>
+                    <p class="text-dark opacity-75">Celebrate love and togetherness</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="occasion-card">
+                <div class="card-body text-center p-4" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                    <i class="bi bi-mortarboard text-dark mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="text-dark">Graduations</h5>
+                    <p class="text-dark opacity-75">Congratulate their achievements</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="occasion-card">
+                <div class="card-body text-center p-4" style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);">
+                    <i class="bi bi-gift text-dark mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="text-dark">Festivals</h5>
+                    <p class="text-dark opacity-75">Spread joy and happiness</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Amount button selection
+    const amountButtons = document.querySelectorAll('.amount-btn');
+    const selectedAmountInput = document.getElementById('selectedAmount');
+    const customAmountInput = document.getElementById('customAmount');
+    
+    amountButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const amount = this.getAttribute('data-amount');
+            selectedAmountInput.value = amount;
+            customAmountInput.value = ''; // Clear custom amount when preset is selected
+        });
+    });
+    
+    // Custom amount input
+    customAmountInput.addEventListener('input', function() {
+        if (this.value) {
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+            selectedAmountInput.value = ''; // Clear preset amount when custom is entered
+        }
+    });
+    
+    // Delivery date toggle
+    const immediateRadio = document.getElementById('immediate');
+    const scheduledRadio = document.getElementById('scheduled');
+    const deliveryDate = document.getElementById('deliveryDate');
+    
+    scheduledRadio.addEventListener('change', function() {
+        if (this.checked) {
+            deliveryDate.style.display = 'block';
+            deliveryDate.required = true;
+        }
+    });
+    
+    immediateRadio.addEventListener('change', function() {
+        if (this.checked) {
+            deliveryDate.style.display = 'none';
+            deliveryDate.required = false;
+            deliveryDate.value = '';
+        }
+    });
+    
+    // Redeem gift card functionality
+    const redeemForm = document.getElementById('redeemForm');
+    if (redeemForm) {
+        redeemForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('{% url "redeem_gift_card" %}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Success! ${data.message}`);
+                } else {
+                    alert(`Error: ${data.message}`);
+                }
+            })
+            .catch(error => {
+                alert('An error occurred. Please try again.');
+            });
+        });
+    }
+    
+    // Check balance functionality
+    const checkBalanceBtn = document.getElementById('checkBalanceBtn');
+    if (checkBalanceBtn) {
+        checkBalanceBtn.addEventListener('click', function() {
+            const cardNumber = document.getElementById('balanceCardNumber').value;
+            
+            if (!cardNumber) {
+                alert('Please enter a gift card number.');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('card_number', cardNumber);
+            formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
+            
+            fetch('{% url "check_gift_card_balance" %}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Balance: ₹${data.balance}\nStatus: ${data.status}\nExpires: ${data.expires_at}\nValid: ${data.is_valid ? 'Yes' : 'No'}`);
+                } else {
+                    alert(`Error: ${data.message}`);
+                }
+            })
+            .catch(error => {
+                alert('An error occurred. Please try again.');
+            });
+        });
+    }
+});
+</script>
+{% endblock %}

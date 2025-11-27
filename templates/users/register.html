@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row no-gutters min-vh-100">
+        <!-- Left Side - Branding -->
+        <div class="col-lg-6 d-none d-lg-flex" style="background: linear-gradient(135deg, #2874f0 0%, #1a5bb8 100%);">
+            <div class="d-flex align-items-center justify-content-center w-100 text-white p-5">
+                <div class="text-center">
+                    <h1 class="display-4 font-weight-bold mb-4">Join Flipkart</h1>
+                    <p class="lead mb-4">Looks like you're new here! Sign up to get started</p>
+                    <div class="text-left">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-user-plus mr-3"></i>
+                            <span>Get personalized recommendations</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-shipping-fast mr-3"></i>
+                            <span>Track your orders in real-time</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-heart mr-3"></i>
+                            <span>Save items to your wishlist</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-tags mr-3"></i>
+                            <span>Enjoy exclusive member offers</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-bolt mr-3"></i>
+                            <span>Faster checkout experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side - Register Form -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center" style="background-color: #f8f9fa;">
+            <div class="w-100" style="max-width: 450px; padding: 2rem;">
+                <div class="text-center mb-4">
+                    <h2 class="font-weight-bold text-primary mb-2">Create Account</h2>
+                    <p class="text-muted">Join the Flipkart family today</p>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label font-weight-medium">Username</label>
+                        <input type="text" 
+                               class="form-control form-control-lg {% if form.username.errors %}is-invalid{% endif %}" 
+                               id="{{ form.username.id_for_label }}" 
+                               name="{{ form.username.name }}" 
+                               value="{{ form.username.value|default:'' }}"
+                               placeholder="Choose a username"
+                               required>
+                        {% if form.username.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="{{ form.email.id_for_label }}" class="form-label font-weight-medium">Email Address</label>
+                        <input type="email" 
+                               class="form-control form-control-lg {% if form.email.errors %}is-invalid{% endif %}" 
+                               id="{{ form.email.id_for_label }}" 
+                               name="{{ form.email.name }}" 
+                               value="{{ form.email.value|default:'' }}"
+                               placeholder="Enter your email address"
+                               required>
+                        {% if form.email.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="{{ form.password.id_for_label }}" class="form-label font-weight-medium">Password</label>
+                        <input type="password" 
+                               class="form-control form-control-lg {% if form.password.errors %}is-invalid{% endif %}" 
+                               id="{{ form.password.id_for_label }}" 
+                               name="{{ form.password.name }}"
+                               placeholder="Create a strong password"
+                               required>
+                        {% if form.password.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if form.password.help_text %}
+                            <div class="form-text">{{ form.password.help_text }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="{{ form.confirm_password.id_for_label }}" class="form-label font-weight-medium">Confirm Password</label>
+                        <input type="password" 
+                               class="form-control form-control-lg {% if form.confirm_password.errors %}is-invalid{% endif %}" 
+                               id="{{ form.confirm_password.id_for_label }}" 
+                               name="{{ form.confirm_password.name }}"
+                               placeholder="Confirm your password"
+                               required>
+                        {% if form.confirm_password.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.confirm_password.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                        <label class="form-check-label text-muted small" for="agreeTerms">
+                            By continuing, you agree to Flipkart's 
+                            <a href="#" class="text-primary">Terms of Use</a> and 
+                            <a href="#" class="text-primary">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block mb-4" style="background: #2874f0; border-color: #2874f0;">
+                        Create Account
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    <p class="text-muted">
+                        Already have an account? 
+                        <a href="{% url 'users:login' %}" class="text-primary font-weight-medium text-decoration-none">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .min-vh-100 {
+        min-height: 100vh !important;
+    }
+    
+    .form-control-lg {
+        border-radius: 8px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control-lg:focus {
+        border-color: #2874f0;
+        box-shadow: 0 0 0 0.2rem rgba(40, 116, 240, 0.25);
+    }
+    
+    .btn-lg {
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background: #1a5bb8 !important;
+        border-color: #1a5bb8 !important;
+        transform: translateY(-1px);
+    }
+    
+    @media (max-width: 991.98px) {
+        .col-lg-6 {
+            min-height: 100vh;
+        }
+    }
+</style>
+{% endblock %}

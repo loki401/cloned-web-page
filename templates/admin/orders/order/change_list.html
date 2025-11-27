@@ -1,0 +1,103 @@
+{% extends "admin/change_list.html" %}
+
+{% block content_title %}
+    {{ block.super }}
+    <div style="float: right; margin-top: -40px;">
+        <a href="{% url 'admin:orders_order_export_csv' %}" class="btn btn-success" style="background: #28a745; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px; margin-right: 10px;">
+            📊 Export All to CSV
+        </a>
+        <a href="{% url 'admin:orders_order_export_excel' %}" class="btn btn-primary" style="background: #007bff; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px; margin-right: 10px;">
+            📈 Export All to Excel
+        </a>
+        <a href="{% url 'admin:orders_order_export_pdf' %}" class="btn btn-danger" style="background: #dc3545; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px;">
+            📄 Export All to PDF
+        </a>
+    </div>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-size: 14px;
+            line-height: 1.5;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        
+        .btn:hover {
+            opacity: 0.85;
+            text-decoration: none;
+        }
+        
+        .export-info {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .export-info h4 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        
+        .export-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .export-features li {
+            padding: 5px 0;
+            color: #6c757d;
+        }
+        
+        .export-features li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block result_list %}
+    <div class="export-info">
+        <h4>📊 Export Features</h4>
+        <div style="display: flex; gap: 30px;">
+            <div>
+                <strong>CSV Export:</strong>
+                <ul class="export-features">
+                    <li>Lightweight format</li>
+                    <li>Compatible with all spreadsheet apps</li>
+                    <li>Quick download</li>
+                </ul>
+            </div>
+            <div>
+                <strong>Excel Export:</strong>
+                <ul class="export-features">
+                    <li>Professional formatting</li>
+                    <li>Two sheets: Summary + Details</li>
+                    <li>Auto-sized columns</li>
+                    <li>Colored headers and rows</li>
+                </ul>
+            </div>
+            <div>
+                <strong>PDF Export:</strong>
+                <ul class="export-features">
+                    <li>Professional PDF report</li>
+                    <li>Flipkart branded layout</li>
+                    <li>Summary statistics</li>
+                    <li>Print-ready format</li>
+                </ul>
+            </div>
+        </div>
+        <p><strong>Tip:</strong> Select specific orders and use "Export selected orders" from the Actions dropdown, or use the buttons above to export all orders.</p>
+    </div>
+    {{ block.super }}
+{% endblock %}

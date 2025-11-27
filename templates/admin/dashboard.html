@@ -1,0 +1,189 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <!-- Statistics Cards -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card users">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">{{ total_users }}</h4>
+                        <p class="mb-0">Total Users</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">{{ total_products }}</h4>
+                        <p class="mb-0">Total Products</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-box fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card orders">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">{{ total_orders }}</h4>
+                        <p class="mb-0">Total Orders</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-shopping-cart fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card revenue">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">₹{{ total_revenue|floatformat:0 }}</h4>
+                        <p class="mb-0">Total Revenue</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-rupee-sign fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Orders -->
+    <div class="col-lg-8 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Orders</h5>
+                <a href="{% url 'custom_admin:order_management' %}" class="btn btn-admin btn-sm">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in recent_orders %}
+                            <tr>
+                                <td>#{{ order.id }}</td>
+                                <td>{{ order.user.username }}</td>
+                                <td>₹{{ order.total_amount }}</td>
+                                <td>
+                                    <span class="badge bg-{% if order.status == 'delivered' %}success{% elif order.status == 'pending' %}warning{% elif order.status == 'processing' %}info{% else %}secondary{% endif %}">
+                                        {{ order.status|title }}
+                                    </span>
+                                </td>
+                                <td>{{ order.created_at|date:"M d, Y" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">No orders found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Top Selling Products</h5>
+                <a href="{% url 'custom_admin:product_management' %}" class="btn btn-admin btn-sm">View All</a>
+            </div>
+            <div class="card-body">
+                {% for product in top_products %}
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h6 class="mb-1">{{ product.name|truncatechars:25 }}</h6>
+                        <small class="text-muted">{{ product.order_count }} orders</small>
+                    </div>
+                    <span class="badge bg-primary">₹{{ product.price }}</span>
+                </div>
+                {% empty %}
+                <p class="text-muted text-center">No products found</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Monthly Statistics -->
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">This Month's Performance</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="text-center">
+                            <h3 class="text-primary">{{ monthly_orders }}</h3>
+                            <p class="text-muted mb-0">Orders</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-center">
+                            <h3 class="text-success">₹{{ monthly_revenue|floatformat:0 }}</h3>
+                            <p class="text-muted mb-0">Revenue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'custom_admin:product_management' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>Add New Product
+                    </a>
+                    <a href="{% url 'custom_admin:category_management' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-tags me-2"></i>Manage Categories
+                    </a>
+                    <a href="{% url 'custom_admin:user_management' %}" class="btn btn-outline-info">
+                        <i class="fas fa-users me-2"></i>View All Users
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flipkart Admin Panel{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .sidebar {
+            background: linear-gradient(135deg, #2874f0 0%, #1a5bb8 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+        .main-content {
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .stat-card.revenue {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .stat-card.orders {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .stat-card.users {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .btn-admin {
+            background: #2874f0;
+            border-color: #2874f0;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-weight: 500;
+        }
+        .btn-admin:hover {
+            background: #1a5bb8;
+            border-color: #1a5bb8;
+        }
+        .table th {
+            background: #f8f9fa;
+            border: none;
+            font-weight: 600;
+            color: #495057;
+        }
+        .admin-header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="p-4">
+                    <h4 class="text-center mb-4">
+                        <i class="fas fa-cogs"></i> Admin Panel
+                    </h4>
+                    <nav class="nav flex-column">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" 
+                           href="{% url 'custom_admin:dashboard' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                        </a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'user_management' %}active{% endif %}" 
+                           href="{% url 'custom_admin:user_management' %}">
+                            <i class="fas fa-users me-2"></i> Users
+                        </a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'product_management' %}active{% endif %}" 
+                           href="{% url 'custom_admin:product_management' %}">
+                            <i class="fas fa-box me-2"></i> Products
+                        </a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'category_management' %}active{% endif %}" 
+                           href="{% url 'custom_admin:category_management' %}">
+                            <i class="fas fa-tags me-2"></i> Categories
+                        </a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'order_management' %}active{% endif %}" 
+                           href="{% url 'custom_admin:order_management' %}">
+                            <i class="fas fa-shopping-cart me-2"></i> Orders
+                        </a>
+                        <hr class="my-3">
+                        <!-- <a class="nav-link" href="{% url 'home' %}">
+                            <i class="fas fa-home me-2"></i> Back to Site
+                        </a> -->
+                        <a class="nav-link" href="{% url 'users:logout' %}">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- Header -->
+                <div class="admin-header">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2 class="mb-0">{% block page_title %}Admin Dashboard{% endblock %}</h2>
+                            <div class="d-flex align-items-center">
+                                <span class="text-muted me-3">Welcome, {{ user.username }}</span>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <i class="fas fa-user-circle"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'home' %}">View Site</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="container-fluid p-4">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

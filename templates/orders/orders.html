@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold">My Orders</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {% if orders %}
+            {% for order in orders %}
+            <div class="card shadow-sm border-0 mb-3 hover-shadow transition-all">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="badge bg-primary rounded-pill px-3 py-2">ORDER #{{ order.order_id }}</span>
+                            <span class="text-muted small"><i class="bi bi-calendar3 me-1"></i>{{
+                                order.created_at|date:"M d, Y" }}</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge 
+                                    {% if order.status == 'delivered' %}bg-success
+                                    {% elif order.status == 'shipped' %}bg-info
+                                    {% elif order.status == 'cancelled' %}bg-danger
+                                    {% else %}bg-warning text-dark{% endif %} 
+                                    rounded-pill px-3">
+                                {{ order.status|upper }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="d-flex flex-wrap gap-4">
+                                {% for item in order.items.all|slice:":3" %}
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="flex-shrink-0" style="width: 60px; height: 60px;">
+                                        {% if item.product.image %}
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                                            class="w-100 h-100 object-fit-contain border rounded p-1">
+                                        {% else %}
+                                        <div
+                                            class="w-100 h-100 bg-light d-flex align-items-center justify-content-center border rounded">
+                                            <i class="bi bi-image text-muted"></i>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-truncate" style="max-width: 200px;">{{ item.product.name }}
+                                        </h6>
+                                        <small class="text-muted">Qty: {{ item.quantity }}</small>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% if order.items.count > 3 %}
+                                <div class="d-flex align-items-center text-muted small">
+                                    +{{ order.items.count|add:"-3" }} more items
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-3 mt-md-0 border-start-md ps-md-4">
+                            <p class="text-muted mb-1 small">Total Amount</p>
+                            <h5 class="fw-bold mb-3">₹{{ order.total_amount|floatformat:0 }}</h5>
+                            <a href="{% url 'orders:order_detail' order.id %}"
+                                class="btn btn-outline-primary btn-sm w-100">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="text-center py-5 bg-white rounded shadow-sm">
+                <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png"
+                    alt="No Orders" class="img-fluid mb-4" style="max-width: 200px;">
+                <h4 class="mb-3">No orders yet!</h4>
+                <p class="text-muted mb-4">Start shopping to see your orders here.</p>
+                <a href="{% url 'home' %}" class="btn btn-primary px-5">Start Shopping</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-shadow:hover {
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    }
+
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+
+    .object-fit-contain {
+        object-fit: contain;
+    }
+
+    @media (min-width: 768px) {
+        .border-start-md {
+            border-left: 1px solid #dee2e6;
+        }
+    }
+</style>
+{% endblock %}

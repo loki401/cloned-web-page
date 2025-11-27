@@ -1,0 +1,436 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 0;
+    }
+    
+    .help-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+    
+    .help-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    
+    .help-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 2rem;
+    }
+    
+    .faq-item {
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .faq-header {
+        background: #f8f9fa;
+        padding: 15px 20px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.3s ease;
+    }
+    
+    .faq-header:hover {
+        background: #e9ecef;
+    }
+    
+    .faq-content {
+        padding: 20px;
+        display: none;
+        border-top: 1px solid #e9ecef;
+    }
+    
+    .contact-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+    }
+    
+    .search-box {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Help Center</h1>
+                <p class="lead mb-4">Find answers to your questions, get support, and learn how to make the most of your Flipkart experience.</p>
+                
+                <!-- Search Box -->
+                <div class="search-box">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search for help topics, orders, products...">
+                        <button class="btn btn-warning" type="button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="bi bi-question-circle" style="font-size: 15rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Help Topics -->
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">How Can We Help You?</h2>
+        <p class="lead text-muted">Choose a topic to get quick assistance</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+                <h5>Orders & Delivery</h5>
+                <p class="text-muted mb-3">Track orders, delivery issues, returns & refunds</p>
+                <a href="#orders" class="btn btn-outline-primary">Get Help</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-credit-card"></i>
+                </div>
+                <h5>Payments & Refunds</h5>
+                <p class="text-muted mb-3">Payment methods, failed transactions, refund status</p>
+                <a href="#payments" class="btn btn-outline-primary">Get Help</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <h5>Account & Profile</h5>
+                <p class="text-muted mb-3">Login issues, profile settings, security</p>
+                <a href="#account" class="btn btn-outline-primary">Get Help</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <h5>Safety & Security</h5>
+                <p class="text-muted mb-3">Report fraud, secure shopping tips</p>
+                <a href="#security" class="btn btn-outline-primary">Get Help</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <h5>Returns & Exchange</h5>
+                <p class="text-muted mb-3">Return policy, exchange process, pickup</p>
+                <a href="#returns" class="btn btn-outline-primary">Get Help</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-gift"></i>
+                </div>
+                <h5>Gift Cards</h5>
+                <p class="text-muted mb-3">Redeem gift cards, check balance</p>
+                <a href="#giftcards" class="btn btn-outline-primary">Get Help</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-shop"></i>
+                </div>
+                <h5>Seller Support</h5>
+                <p class="text-muted mb-3">Selling on Flipkart, seller policies</p>
+                <a href="#seller" class="btn btn-outline-primary">Get Help</a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card help-card p-4 text-center">
+                <div class="help-icon">
+                    <i class="bi bi-headset"></i>
+                </div>
+                <h5>Contact Support</h5>
+                <p class="text-muted mb-3">Chat, call or email our support team</p>
+                <a href="#contact" class="btn btn-outline-primary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Frequently Asked Questions</h2>
+            <p class="lead text-muted">Quick answers to common questions</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">How do I track my order?</h6>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p>You can track your order by:</p>
+                        <ul>
+                            <li>Going to "My Orders" in your account</li>
+                            <li>Clicking on the order you want to track</li>
+                            <li>Viewing real-time tracking information</li>
+                            <li>Getting SMS and email updates</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">What is the return policy?</h6>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p>Our return policy includes:</p>
+                        <ul>
+                            <li>7-30 days return window depending on product category</li>
+                            <li>Free pickup for most returns</li>
+                            <li>Refund processed within 7-10 business days</li>
+                            <li>Items must be in original condition with tags</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">How do I cancel my order?</h6>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p>To cancel your order:</p>
+                        <ul>
+                            <li>Go to "My Orders" section</li>
+                            <li>Find the order you want to cancel</li>
+                            <li>Click "Cancel" if the option is available</li>
+                            <li>Orders can be cancelled before they are shipped</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">What payment methods do you accept?</h6>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p>We accept various payment methods:</p>
+                        <ul>
+                            <li>Credit/Debit Cards (Visa, MasterCard, American Express)</li>
+                            <li>Net Banking from all major banks</li>
+                            <li>UPI (PhonePe, Google Pay, Paytm, etc.)</li>
+                            <li>Wallets (Flipkart Pay Later, Paytm, etc.)</li>
+                            <li>Cash on Delivery (COD)</li>
+                            <li>EMI options available</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">How do I redeem a gift card?</h6>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p>To redeem your gift card:</p>
+                        <ul>
+                            <li>Go to "Gift Cards" section in your account</li>
+                            <li>Enter your gift card number and security code</li>
+                            <li>Click "Add to Account"</li>
+                            <li>The amount will be added to your Flipkart wallet</li>
+                            <li>Use it during checkout for any purchase</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">Is it safe to shop on Flipkart?</h6>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p>Yes, shopping on Flipkart is completely safe:</p>
+                        <ul>
+                            <li>SSL encryption for secure transactions</li>
+                            <li>PCI DSS compliant payment processing</li>
+                            <li>Buyer protection policies</li>
+                            <li>Verified sellers and authentic products</li>
+                            <li>24/7 customer support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Support Section -->
+<div class="container my-5" id="contact">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Still Need Help?</h2>
+        <p class="lead text-muted">Our support team is here to assist you</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="contact-card h-100">
+                <i class="bi bi-chat-dots mb-3" style="font-size: 3rem;"></i>
+                <h5>Live Chat</h5>
+                <p class="mb-3">Chat with our support team for instant help</p>
+                <p><strong>Available:</strong> 24/7</p>
+                <button class="btn btn-light">Start Chat</button>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="contact-card h-100">
+                <i class="bi bi-telephone mb-3" style="font-size: 3rem;"></i>
+                <h5>Phone Support</h5>
+                <p class="mb-3">Call us for immediate assistance</p>
+                <p><strong>Toll Free:</strong> 1800-208-9898</p>
+                <button class="btn btn-light">Call Now</button>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="contact-card h-100">
+                <i class="bi bi-envelope mb-3" style="font-size: 3rem;"></i>
+                <h5>Email Support</h5>
+                <p class="mb-3">Send us an email and we'll respond within 24 hours</p>
+                <p><strong>Email:</strong> support@flipkart.com</p>
+                <button class="btn btn-light">Send Email</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popular Topics -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Popular Help Topics</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <h5>Orders & Delivery</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration-none">Track your order</a></li>
+                    <li><a href="#" class="text-decoration-none">Delivery timeline</a></li>
+                    <li><a href="#" class="text-decoration-none">Change delivery address</a></li>
+                    <li><a href="#" class="text-decoration-none">Delivery charges</a></li>
+                </ul>
+                
+                <h5 class="mt-4">Returns & Refunds</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration-none">Return policy</a></li>
+                    <li><a href="#" class="text-decoration-none">Initiate return</a></li>
+                    <li><a href="#" class="text-decoration-none">Refund status</a></li>
+                    <li><a href="#" class="text-decoration-none">Exchange process</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-6">
+                <h5>Account & Security</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration-none">Login issues</a></li>
+                    <li><a href="#" class="text-decoration-none">Reset password</a></li>
+                    <li><a href="#" class="text-decoration-none">Update profile</a></li>
+                    <li><a href="#" class="text-decoration-none">Account security</a></li>
+                </ul>
+                
+                <h5 class="mt-4">Payments</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration-none">Payment methods</a></li>
+                    <li><a href="#" class="text-decoration-none">Failed transactions</a></li>
+                    <li><a href="#" class="text-decoration-none">EMI options</a></li>
+                    <li><a href="#" class="text-decoration-none">Wallet balance</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleFaq(element) {
+    const content = element.nextElementSibling;
+    const icon = element.querySelector('i');
+    
+    if (content.style.display === 'block') {
+        content.style.display = 'none';
+        icon.className = 'bi bi-chevron-down';
+    } else {
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-content').forEach(item => {
+            item.style.display = 'none';
+        });
+        document.querySelectorAll('.faq-header i').forEach(item => {
+            item.className = 'bi bi-chevron-down';
+        });
+        
+        // Open clicked FAQ item
+        content.style.display = 'block';
+        icon.className = 'bi bi-chevron-up';
+    }
+}
+</script>
+{% endblock %}

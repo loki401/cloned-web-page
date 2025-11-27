@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        color: white;
+        padding: 80px 0;
+    }
+    
+    .feature-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 2rem;
+    }
+    
+    .stats-section {
+        background: #f8f9fa;
+        padding: 60px 0;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #ff6b35;
+    }
+    
+    .pricing-card {
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .pricing-card:hover {
+        border-color: #ff6b35;
+        transform: translateY(-5px);
+    }
+    
+    .pricing-card.featured {
+        border-color: #ff6b35;
+        position: relative;
+    }
+    
+    .pricing-badge {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ff6b35;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Advertise on Flipkart</h1>
+                <p class="lead mb-4">Reach millions of customers and boost your brand visibility with our powerful advertising solutions. Drive sales and grow your business with targeted campaigns.</p>
+                <div class="d-flex gap-3">
+                    <a href="#get-started" class="btn btn-light btn-lg px-4 py-3">
+                        <i class="bi bi-megaphone me-2"></i>Start Advertising
+                    </a>
+                    <a href="#solutions" class="btn btn-outline-light btn-lg px-4 py-3">
+                        <i class="bi bi-graph-up me-2"></i>View Solutions
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="bi bi-megaphone" style="font-size: 15rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="stats-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">45 Cr+</div>
+                <p class="text-muted">Monthly Active Users</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">500 Cr+</div>
+                <p class="text-muted">Monthly Page Views</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">80%</div>
+                <p class="text-muted">Mobile Traffic</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-number">27000+</div>
+                <p class="text-muted">Cities & Towns Reached</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Advertising Solutions -->
+<div class="container my-5" id="solutions">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Advertising Solutions</h2>
+        <p class="lead text-muted">Choose the right advertising format to reach your target audience</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-search"></i>
+                </div>
+                <h4>Sponsored Products</h4>
+                <p class="text-muted">Promote your products in search results and category pages to increase visibility and drive sales.</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Keyword targeting</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Cost-per-click pricing</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Performance tracking</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-image"></i>
+                </div>
+                <h4>Display Advertising</h4>
+                <p class="text-muted">Create eye-catching banner ads that appear across Flipkart's website and mobile app.</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Prime real estate</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Rich media formats</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Brand awareness</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-envelope"></i>
+                </div>
+                <h4>Email Marketing</h4>
+                <p class="text-muted">Reach customers directly through targeted email campaigns and newsletters.</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Targeted segments</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Personalized content</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>High engagement</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-phone"></i>
+                </div>
+                <h4>Mobile Advertising</h4>
+                <p class="text-muted">Optimize your campaigns for mobile users with app-specific ad formats.</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="bi bi-check-circle text-success me-2"></i>App notifications</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>In-app banners</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Mobile optimization</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <h4>Seasonal Campaigns</h4>
+                <p class="text-muted">Leverage festive seasons and special events to maximize your advertising impact.</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Festival promotions</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Sale events</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Exclusive deals</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card feature-card p-4 text-center">
+                <div class="feature-icon">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <h4>Performance Analytics</h4>
+                <p class="text-muted">Track and optimize your campaigns with detailed analytics and insights.</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Real-time data</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>ROI tracking</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i>Custom reports</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pricing Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Advertising Packages</h2>
+            <p class="lead text-muted">Choose a package that fits your budget and goals</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-body p-4 text-center">
+                        <h4 class="card-title">Starter</h4>
+                        <div class="display-4 fw-bold text-primary mb-3">₹10,000</div>
+                        <p class="text-muted mb-4">Perfect for small businesses</p>
+                        <ul class="list-unstyled text-start mb-4">
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Sponsored Products</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Basic Analytics</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Email Support</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>1 Campaign</li>
+                        </ul>
+                        <button class="btn btn-outline-primary w-100">Get Started</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card pricing-card featured h-100">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="card-body p-4 text-center">
+                        <h4 class="card-title">Professional</h4>
+                        <div class="display-4 fw-bold text-primary mb-3">₹25,000</div>
+                        <p class="text-muted mb-4">Best for growing businesses</p>
+                        <ul class="list-unstyled text-start mb-4">
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>All Starter features</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Display Advertising</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Advanced Analytics</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Phone Support</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>5 Campaigns</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Get Started</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-body p-4 text-center">
+                        <h4 class="card-title">Enterprise</h4>
+                        <div class="display-4 fw-bold text-primary mb-3">₹50,000</div>
+                        <p class="text-muted mb-4">For large scale operations</p>
+                        <ul class="list-unstyled text-start mb-4">
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>All Professional features</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Premium Placements</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Dedicated Manager</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Custom Solutions</li>
+                            <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Unlimited Campaigns</li>
+                        </ul>
+                        <button class="btn btn-outline-primary w-100">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="py-5" id="get-started">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4">Ready to Boost Your Sales?</h2>
+        <p class="lead mb-4">Start advertising on Flipkart today and reach millions of potential customers</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-4">Get Started with Advertising</h5>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Company Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Business Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" required>
+                                    <option value="">Select Budget Range</option>
+                                    <option value="10k-25k">₹10,000 - ₹25,000</option>
+                                    <option value="25k-50k">₹25,000 - ₹50,000</option>
+                                    <option value="50k-100k">₹50,000 - ₹1,00,000</option>
+                                    <option value="100k+">₹1,00,000+</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="3" placeholder="Tell us about your advertising goals"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="bi bi-megaphone me-2"></i>Request Consultation
+                            </button>
+                        </form>
+                        <p class="text-muted mt-3 small">Our advertising experts will contact you within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
