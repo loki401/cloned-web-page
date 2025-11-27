@@ -1,0 +1,73 @@
+FLIPKART CLONE - SETUP GUIDE
+===========================
+
+This guide will help you set up and run the Flipkart Clone project on your local machine.
+
+PREREQUISITES
+-------------
+1. Python 3.8 or higher installed
+2. pip (Python package manager)
+3. Git (optional, if cloning the repository)
+
+SETUP INSTRUCTIONS
+------------------
+
+1. CREATE A VIRTUAL ENVIRONMENT (Recommended)
+   ```
+   python -m venv venv
+   ```
+
+2. ACTIVATE THE VIRTUAL ENVIRONMENT
+   
+    .\venv\Scripts\activate
+
+3. INSTALL REQUIRED PACKAGES
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. SET UP THE DATABASE
+   ```
+   python manage.py migrate
+   ```
+
+5. CREATE A SUPERUSER (Admin Account)
+   ```
+   python manage.py createsuperuser
+   ```
+   Follow the prompts to create an admin account.
+
+6. RUN THE DEVELOPMENT SERVER
+   ```
+   python manage.py runserver
+   ```
+
+7. ACCESS THE APPLICATION
+   - Open your web browser and go to:
+     ```
+     http://127.0.0.1:8000/
+     ```
+     (Use the superuser credentials you created in step 6)
+
+TROUBLESHOOTING
+---------------
+- If you get any port conflicts, you can specify a different port:
+  ```
+  python manage.py runserver 8001
+  ```
+
+- If you encounter any package version conflicts, try:
+  ```
+  pip install --upgrade -r requirements.txt
+  ```
+
+- For database issues, you can reset the database by:
+  ```
+  del db.sqlite3
+  python manage.py migrate
+  python manage.py createsuperuser
+  ```
+
+SUPPORT
+-------
+If you encounter any issues during setup, please contact the project maintainer for assistance.
