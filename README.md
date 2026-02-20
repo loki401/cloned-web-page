@@ -299,10 +299,10 @@ For licensing inquiries, contact: [your-email@domain.com]
 ## 📞 Contact & Support
 
 ### Project Owner
-- **Name**: [Your Name]
-- **Email**: [your-email@domain.com]
-- **LinkedIn**: [Your LinkedIn Profile]
-- **GitHub**: [Your GitHub Profile]
+- **Name**: [Logesh M]
+- **Email**: [muruganlogesh409@gmail.com]
+- **LinkedIn**: [www.linkedin.com/in/logesh-m-72b801258]
+- **GitHub**: [github.com/loki401]
 
 ### Legal Inquiries
 For licensing, legal, or business inquiries:
