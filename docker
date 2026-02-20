@@ -1,0 +1,19 @@
+# 1. Use Python as the base image
+FROM python:3.9-slim
+
+# 2. Set the working directory inside the container
+WORKDIR /app
+
+# 3. Copy the requirements file and install dependencies
+# Note: Ensure you have a requirements.txt in your repo!
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 4. Copy the rest of your code
+COPY . /app/
+
+# 5. Expose the port Django runs on
+EXPOSE 8000
+
+# 6. Command to start the application
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
