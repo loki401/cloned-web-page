@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Mail, Github, Linkedin, Cpu, Cloud, Code2, GraduationCap, Briefcase } from "lucide-react";
-import portrait from "@/assets//loki photo 2.png.asset.json";
-
+const portrait = "/loki photo 2.png";
 export const Route = createFileRoute("/")({
   component: Index,
 });
